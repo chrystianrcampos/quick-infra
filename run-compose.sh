@@ -3,4 +3,5 @@ docker compose \
   -f compose/01-caddy.yml \
   -f compose/02-opensearch.yml \
   -f compose/03-opensearch-dashboards.yml \
+  -f compose/04-fluentbit.yml \
   up -d --remove-orphans

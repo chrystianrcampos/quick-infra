@@ -1,0 +1,29 @@
+configs:
+  fluent-bit-conf-file:
+    file: ../fluent-bit/fluent-bit.conf
+
+services:
+  fluent-bit:
+    image: fluent/fluent-bit:3.0
+    networks:
+      - aurora-net
+    volumes:
+      - /var/log:/var/log:ro
+      - /etc/machine-id:/etc/machine-id:ro
+      - /run/log/journal:/run/log/journal:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    configs:
+      - source: fluent-bit-conf-file
+        target: /fluent-bit/etc/fluent-bit.conf
+    user: root
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M

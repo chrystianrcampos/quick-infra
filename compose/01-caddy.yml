@@ -8,7 +8,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      #- "443:443/udp"
+      - "443:443/udp"
     networks:
       - aurora-net
     volumes:
