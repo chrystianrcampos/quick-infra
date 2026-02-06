@@ -1,0 +1,11 @@
+networks:
+  aurora-net:
+    driver: bridge
+    #driver: overlay
+    attachable: true
+
+volumes:
+  opensearch-data:
+  caddy-data:
+  caddy-config:
+  caddy-logs:

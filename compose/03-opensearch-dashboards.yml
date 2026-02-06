@@ -1,0 +1,23 @@
+services:
+  dashboards:
+    image: opensearchproject/opensearch-dashboards:2.12.0
+    environment:
+      - 'OPENSEARCH_HOSTS=["http://opensearch:9200"]'
+    networks:
+      - aurora-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+      labels:
+        app.auroratech.service: "dashboards"
