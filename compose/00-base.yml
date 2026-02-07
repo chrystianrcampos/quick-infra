@@ -1,5 +1,6 @@
 networks:
   aurora-net:
+    name: aurora-net
     driver: bridge
     #driver: overlay
     attachable: true
