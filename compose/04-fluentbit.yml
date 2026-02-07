@@ -7,11 +7,9 @@ services:
     image: fluent/fluent-bit:3.0
     networks:
       - aurora-net
-    volumes:
-      - /var/log:/var/log:ro
-      - /etc/machine-id:/etc/machine-id:ro
-      - /run/log/journal:/run/log/journal:ro
-      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
     configs:
       - source: fluent-bit-conf-file
         target: /fluent-bit/etc/fluent-bit.conf
