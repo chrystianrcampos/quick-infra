@@ -16,5 +16,5 @@
 
 ## Run on production
 
-- P=$(openssl rand -base64 24 | tr -dc 'a-zA-Z0-9' | head -c 20); grep -rIl "StrongPassword123!" . | xargs sed -i "s|StrongPassword123!|$P|g"; echo "$P"
+- P=$(openssl rand -base64 24 | tr -dc 'a-zA-Z0-9' | head -c 20); grep -rIl 'StrongPassword123!' . | xargs sed -i "s|StrongPassword123\!|$P|g"; echo "$P"
 - mv caddy/Caddyfile caddy/Caddyfile.local && mv caddy/Caddyfile.prd caddy/Caddyfile
