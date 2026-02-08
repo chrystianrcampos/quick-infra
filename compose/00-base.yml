@@ -10,3 +10,4 @@ volumes:
   caddy-data:
   caddy-config:
   caddy-logs:
+  postgres-data:

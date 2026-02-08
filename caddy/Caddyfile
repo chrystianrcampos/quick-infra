@@ -42,3 +42,21 @@ dashboards.localhost {
         format json
     }
 }
+
+pgadmin.localhost {
+    encode zstd gzip
+    tls internal
+
+    header {
+        Strict-Transport-Security "max-age=31536000;"
+        X-XSS-Protection "1; mode=block"
+        X-Frame-Options "SAMEORIGIN"
+    }
+
+    reverse_proxy pgadmin:80
+
+    log {
+        output file /var/log/caddy/pgadmin-access.json
+        format json
+    }
+}

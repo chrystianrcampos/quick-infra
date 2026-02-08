@@ -1,0 +1,27 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4:9.12
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@auroratech.app
+      - PGADMIN_DEFAULT_PASSWORD=StrongPassword123!
+    networks:
+      - aurora-net
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: "pgadmin"
+        fluentd-async: "true"
+        mode: non-blocking
+        max-buffer-size: 4m
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+      labels:
+        app.auroratech.service: "admin"
